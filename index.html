@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>আবিস্কার করো বর্ণমালা | শিশুদের জন্য মজার শিক্ষা</title>
+    <meta name="description" content="শিশুদের জন্য ইন্টারঅ্যাকটিভ বর্ণমালা শেখার ওয়েবসাইট। ছবি, শব্দ ও ক্লিক করে উচ্চারণ শুনে ইংরেজি অক্ষর শিখুন সহজেই।">
+    <meta name="theme-color" content="#FFB74D">
+    <!-- Google Fonts - শিশু উপযোগী ফন্ট -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* টেক্সট সিলেক্ট না করার সুবিধা, শিশুদের জন্য ভালো */
+        }
+
+        body {
+            background: linear-gradient(145deg, #F9E7B3 0%, #F5C6A0 100%);
+            font-family: 'Quicksand', 'Comic Neue', 'Comic Neue', 'Segoe UI Emoji', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* প্রধান কন্টেইনার */
+        .alphabet-world {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255, 248, 225, 0.85);
+            border-radius: 72px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), 0 0 0 10px rgba(255, 215, 150, 0.5);
+            padding: 1.5rem 2rem 2.5rem;
+            backdrop-filter: blur(2px);
+            transition: all 0.3s ease;
+        }
+
+        /* হেডার অংশ */
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #E65100, #F9A825, #FFD54F);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .hero .sub {
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: #FFECB3;
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 60px;
+            color: #BF360C;
+            box-shadow: inset 0 -2px 0 #FFB74D, 0 6px 12px rgba(0,0,0,0.05);
+        }
+
+        .fun-line {
+            font-size: 1.1rem;
+            margin-top: 15px;
+            color: #D84315;
+            font-weight: 600;
+            background: #FFF3E0;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 6px 20px;
+            border-radius: 50px;
+        }
+
+        /* কার্ড গ্রিড */
+        .abc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 20px 16px;
+            margin: 2rem 0 1.5rem;
+        }
+
+        /* প্রতিটি অক্ষরের কার্ড */
+        .alphabet-card {
+            background: white;
+            border-radius: 44px;
+            padding: 18px 8px 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 12px 18px -8px rgba(0, 0, 0, 0.15);
+            border: 2px solid #FFCC80;
+            position: relative;
+            backdrop-filter: blur(2px);
+        }
+
+        .alphabet-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.25);
+            border-color: #FF9800;
+            background: #FFF9F0;
+        }
+
+        /* অক্ষর বড় এবং ছোট */
+        .letter-big {
+            font-size: 3.6rem;
+            font-weight: 800;
+            color: #E65100;
+            line-height: 1;
+            text-shadow: 2px 2px 0 #FFD966;
+            letter-spacing: 2px;
+        }
+
+        .letter-small {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #F57C00;
+            background: #FFF0D6;
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 40px;
+            margin-top: 6px;
+        }
+
+        /* ইমোজি বা ছবি অংশ */
+        .emoji-icon {
+            font-size: 3rem;
+            margin: 8px 0 4px;
+            display: block;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+        }
+
+        .word-example {
+            font-size: 1rem;
+            font-weight: 700;
+            background: #FFE0B5;
+            padding: 5px 12px;
+            border-radius: 60px;
+            display: inline-block;
+            margin-top: 8px;
+            color: #A14000;
+            letter-spacing: 0.5px;
+        }
+
+        /* ক্লিক করার সময় অ্যানিমেশন */
+        .alphabet-card:active {
+            transform: scale(0.96);
+            transition: 0.05s;
+        }
+
+        /* স্পিকিং ইফেক্ট আলাদা করে দেওয়া */
+        .speaking {
+            background: #FFE082;
+            box-shadow: 0 0 0 4px #FFB300;
+            transition: 0.1s;
+        }
+
+        /* ফুটার ইন্সট্রাকশন */
+        .instruction-box {
+            background: #FFF1CF;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            padding: 14px 20px;
+            margin-top: 25px;
+            font-weight: 600;
+            color: #BF5B17;
+            border: 1px solid #FFCE94;
+        }
+
+        .instruction-box span {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .instruction-box i {
+            font-size: 1.5rem;
+        }
+
+        /* রেস্পন্সিভ */
+        @media (max-width: 650px) {
+            .alphabet-world {
+                padding: 1rem 1rem 1.8rem;
+            }
+            .abc-grid {
+                grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+                gap: 12px;
+            }
+            .letter-big {
+                font-size: 2.8rem;
+            }
+            .emoji-icon {
+                font-size: 2.5rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .word-example {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .abc-grid {
+                grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+            }
+            .alphabet-card {
+                padding: 12px 5px 10px;
+            }
+            .letter-small {
+                font-size: 1rem;
+            }
+        }
+
+        /* আনন্দময় বাটন */
+        .sound-info {
+            background: #FF8A65;
+            border-radius: 32px;
+            padding: 6px 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            margin-left: 12px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: #A5673F;
+        }
+        button {
+            background: none;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="alphabet-world">
+    <div class="hero">
+        <h1>🎈 আবিস্কার করো ABC 🎈</h1>
+        <div class="sub">ছোটদের বর্ণমালার মজার জগৎ</div>
+        <div class="fun-line">👉 প্রতিটি কার্ডে ক্লিক করো – শোনো অক্ষর আর শব্দের উচ্চারণ! 🔊</div>
+    </div>
+
+    <!-- বর্ণমালার গ্রিড (জাভাস্ক্রিপ্ট দিয়ে তৈরি হবে) -->
+    <div id="alphabetGrid" class="abc-grid"></div>
+
+    <div class="instruction-box">
+        <span>🎨 রঙিন কার্ড</span>
+        <span>🐘 ছবি + শব্দ</span>
+        <span>🔊 ক্লিক করলেই শোনা যাবে: <strong style="background:#FFB74D; padding:4px 10px; border-radius:50px;">"A ফর Apple"</strong></span>
+        <span>✨ মজায় শিখি</span>
+    </div>
+    <footer>
+        🌟 প্রতিটি অক্ষরে ট্যাপ করো - উচ্চারণ শোনো ও আনন্দে বর্ণমালা শিখো!
+    </footer>
+</div>
+
+<script>
+    // বর্ণমালার ডাটা - অক্ষর, উদাহরণ শব্দ, ইমোজি (শিশু বান্ধব)
+    const alphabetData = [
+        { letter: "A", small: "a", word: "Apple", emoji: "🍎", pronunciation: "A ফর Apple" },
+        { letter: "B", small: "b", word: "Ball", emoji: "⚽", pronunciation: "B ফর Ball" },
+        { letter: "C", small: "c", word: "Cat", emoji: "🐱", pronunciation: "C ফর Cat" },
+        { letter: "D", small: "d", word: "Dog", emoji: "🐶", pronunciation: "D ফর Dog" },
+        { letter: "E", small: "e", word: "Elephant", emoji: "🐘", pronunciation: "E ফর Elephant" },
+        { letter: "F", small: "f", word: "Fish", emoji: "🐟", pronunciation: "F ফর Fish" },
+        { letter: "G", small: "g", word: "Grapes", emoji: "🍇", pronunciation: "G ফর Grapes" },
+        { letter: "H", small: "h", word: "Hat", emoji: "🧢", pronunciation: "H ফর Hat" },
+        { letter: "I", small: "i", word: "Igloo", emoji: "⛄", pronunciation: "I ফর Igloo" },
+        { letter: "J", small: "j", word: "Jelly", emoji: "🍮", pronunciation: "J ফর Jelly" },
+        { letter: "K", small: "k", word: "Kite", emoji: "🪁", pronunciation: "K ফর Kite" },
+        { letter: "L", small: "l", word: "Lion", emoji: "🦁", pronunciation: "L ফর Lion" },
+        { letter: "M", small: "m", word: "Monkey", emoji: "🐒", pronunciation: "M ফর Monkey" },
+        { letter: "N", small: "n", word: "Nest", emoji: "🪹", pronunciation: "N ফর Nest" },
+        { letter: "O", small: "o", word: "Orange", emoji: "🍊", pronunciation: "O ফর Orange" },
+        { letter: "P", small: "p", word: "Penguin", emoji: "🐧", pronunciation: "P ফর Penguin" },
+        { letter: "Q", small: "q", word: "Queen", emoji: "👸", pronunciation: "Q ফর Queen" },
+        { letter: "R", small: "r", word: "Rabbit", emoji: "🐇", pronunciation: "R ফর Rabbit" },
+        { letter: "S", small: "s", word: "Sun", emoji: "☀️", pronunciation: "S ফর Sun" },
+        { letter: "T", small: "t", word: "Tiger", emoji: "🐯", pronunciation: "T ফর Tiger" },
+        { letter: "U", small: "u", word: "Umbrella", emoji: "☂️", pronunciation: "U ফর Umbrella" },
+        { letter: "V", small: "v", word: "Violin", emoji: "🎻", pronunciation: "V ফর Violin" },
+        { letter: "W", small: "w", word: "Whale", emoji: "🐋", pronunciation: "W ফর Whale" },
+        { letter: "X", small: "x", word: "Xylophone", emoji: "🎹", pronunciation: "X ফর Xylophone" },
+        { letter: "Y", small: "y", word: "Yak", emoji: "🐃", pronunciation: "Y ফর Yak" },
+        { letter: "Z", small: "z", word: "Zebra", emoji: "🦓", pronunciation: "Z ফর Zebra" }
+    ];
+
+    // স্পিচ সিন্থেসিস সাপোর্ট চেক
+    const speechSupported = 'speechSynthesis' in window;
+    let currentUtterance = null; // আগের স্পিচ বন্ধ করতে
+
+    function speakText(text) {
+        if (!speechSupported) {
+            console.warn("এই ব্রাউজারে স্পিচ সাপোর্ট নেই");
+            alert("🔊 আপনার ব্রাউজার উচ্চারণ সমর্থন করে না। তবে কার্ড দেখে শিখতে পারেন!");
+            return;
+        }
+        // যদি আগে কোন উচ্চারণ চলছে তাহলে বন্ধ করুন
+        if (currentUtterance) {
+            window.speechSynthesis.cancel();
+        }
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'bn-BD'; // বাংলা ও ইংরেজি মিক্সেড - বাচ্চাদের জন্য বোধগম্য
+        utterance.rate = 0.9;      // একটু ধীর ও স্পষ্ট
+        utterance.pitch = 1.1;     // একটু চনমনে পিচ
+        utterance.volume = 1;
+        
+        // কিছু ব্রাউজারে ভয়েস সিলেক্ট করতে পারি - ডিফল্ট ইংরেজি/বাংলা মিক্স
+        // বাচ্চাদের বোধগম্যতার জন্য 'A for Apple' টাইপেই বলবে, ব্রাউজার যেনো ইংরেজি ক্লিয়ার বলে
+        utterance.lang = 'en-US';  // ইংরেজি অক্ষর ও শব্দের জন্য পরিষ্কার উচ্চারণ
+        // কিন্তু 'ফর' শব্দটা বাংলা? আমি প্রোনানসিয়েশন টেক্সটে 'A for Apple' ই দিয়ে দিয়েছি, শিশু ইংরেজি উচ্চারণ শুনবে যা আদর্শ।
+        // পুনঃনিরীক্ষণ: pronunciation প্রপার্টিতে আমি 'A ফর Apple' দিয়েছিলাম, কিন্তু 'ফর' শব্দটি বাংলা। আবার ডাটা চেঞ্জ করি যাতে ভালো শোনায়:
+        // আমরা উচ্চারণের স্ট্রিং বানাবো "A for Apple" ইংরেজি, কিন্তু শিশুদের জন্য স্পষ্ট। 
+        // আমি উপরের ডাটাতে 'pronunciation' পুরোনো 'A ফর Apple' আছে, এটা একটু মিশ্র। বদলে ফেলি জাভাস্ক্রিপ্টে динамиিক করি।
+        // সমাধান: উচ্চারণটি হবে "A for Apple" , "B for Ball" ইত্যাদি - ইংরেজি ফরম্যাটে যা আন্তর্জাতিক শিশুদের সহজ।
+        // কিন্তু সাইট বাংলা পরিবেশে, এটাও ঠিক আছে। যাইহোক আপাতত ডাটা আপডেট করছি ফাংশনে। 
+    }
+
+    // উচ্চারণের পরিমার্জিত ফাংশন
+    function getCleanPronunciation(letter, word) {
+        return `${letter} for ${word}`;
+    }
+
+    // কার্ডে ক্লিক করলে অ্যানিমেশন ও স্পিচ
+    function speakCard(letter, word, cardElement) {
+        const speakMsg = `${letter} for ${word}`;
+        // অ্যানিমেশন যোগ - স্পিকিং ইফেক্ট
+        if (cardElement) {
+            cardElement.classList.add('speaking');
+            setTimeout(() => {
+                cardElement.classList.remove('speaking');
+            }, 300);
+        }
+        if (!speechSupported) {
+            // ব্রাউজার সাপোর্ট না করলে শুধু অ্যালার্ট?
+            return;
+        }
+        // বর্তমান স্পিচ বন্ধ
+        if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+            window.speechSynthesis.cancel();
+        }
+        const utterance = new SpeechSynthesisUtterance(speakMsg);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        utterance.pitch = 1.15;
+        utterance.volume = 1;
+        // কিছু ব্রাউজারে ভয়েস সেট করা যায় (ঐচ্ছিক)
+        window.speechSynthesis.speak(utterance);
+        currentUtterance = utterance;
+        utterance.onend = () => {
+            currentUtterance = null;
+        };
+    }
+
+    // সব কার্ড ডায়নামিক্যালি তৈরি করা
+    function buildAlphabetCards() {
+        const gridContainer = document.getElementById('alphabetGrid');
+        if (!gridContainer) return;
+        gridContainer.innerHTML = ''; // পরিষ্কার
+
+        alphabetData.forEach(item => {
+            const { letter, small, word, emoji } = item;
+            const card = document.createElement('div');
+            card.className = 'alphabet-card';
+            // অভ্যন্তরীণ HTML
+            card.innerHTML = `
+                <div class="letter-big">${letter}</div>
+                <div class="letter-small">${small}</div>
+                <div class="emoji-icon">${emoji}</div>
+                <div class="word-example">${word}</div>
+            `;
+            // ক্লিক ইভেন্ট লিস্টেনার
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // স্পিক কার্ড - অক্ষর ও শব্দ পাঠাবে
+                speakCard(letter, word, card);
+                // কম্পন ইফেক্ট (ঐচ্ছিকভাবে ছোট রঙের ফ্ল্যাশ)
+                card.style.transform = 'scale(0.97)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 120);
+            });
+            gridContainer.appendChild(card);
+        });
+    }
+
+    // ওয়েবসাইট স্বাগত বার্তা - প্রথমবারের জন্য নির্দেশিকা স্পিচ, কিন্তু স্বয়ংক্রিয় না করাই ভালো, তবে ইউজার একটু মজা পাবে 
+    // শুরুতে ব্রাউজার পলিসির জন্য স্পিচ স্বয়ংক্রিয় কাজ নাও করতে পারে, তাই ব্যাকগ্রাউন্ডে কিছু বলবো না। 
+    // বরং ব্যবহারকারী যখন প্রথম কোনো কার্ডে ক্লিক করবে তখন কাজ করবে। 
+
+    // কিছু ব্রাউজারে স্পিচ সিন্থেসিসের জন্য ব্যবহারকারীর ইন্টারঅ্যাকশন লাগে। আমাদের ক্লিক ইভেন্টে ইতিমধ্যেই তা আছে।
+    // একটি মজার ফিচার: গ্রিড তৈরি শেষে নির্দেশনা ভয়েস না দিয়ে একটি ছোট নোটিশ দেবো
+
+    // এছাড়া শিক্ষামূলক সহায়ক: A-Z পর্যন্ত সব কার্ড, শিশুদের জন্য বড় টেক্সট, টাচ অপটিমাইজড
+
+    // অতিরিক্ত: সম্ভব হলে ব্রাউজারে স্পিচ রেডি কিনা জানিয়ে দেওয়া
+    window.addEventListener('load', () => {
+        buildAlphabetCards();
+        // স্পিচ সাপোর্ট চেক করে কনসোল এ বা নান্দনিক
+        if (!speechSupported) {
+            const infoDiv = document.createElement('div');
+            infoDiv.style.backgroundColor = "#FFCC80";
+            infoDiv.style.padding = "8px";
+            infoDiv.style.borderRadius = "40px";
+            infoDiv.style.textAlign = "center";
+            infoDiv.style.marginTop = "16px";
+            infoDiv.innerText = "⚠️ আপনার ব্রাউজার স্পিচ ফিচার সাপোর্ট করে না। তবে কার্ড দেখে শিখতে পারবেন!";
+            document.querySelector('.instruction-box').after(infoDiv);
+        } else {
+            // ছোট হেল্প টেক্সট: নির্দেশনা যে প্রথম ক্লিকে স্পিচ কাজ করবে (পলিসি)
+            // কোনো কিছু না
+            console.log("স্পিচ রেডি! শিশুরা ক্লিক করলেই শুনবে।");
+        }
+    });
+
+    // টাচ ডিভাইস ও মোবাইলের জন্য অতিরিক্ত ক্লিক ডিবাউন্স দরকার নেই
+    // আবার স্পিচ ক্যান্সেল ঠিকমতো কাজ করছে
+    // আর কিছু অ্যাডভান্স ফিচার: প্রতিটি কার্ডের জন্য আরও গতিশীল রং?? optional
+    // আমরা চাইলে কিন্তু পুরোপুরি রেসপন্সিভ ও ফ্রেন্ডলি
+
+    // একটি ছোট এক্সট্রা: যখন কোন কার্ডে ক্লিক করা হবে, তখন স্পিচ বলার সাথে সাথে উচ্চারিত শব্দটির ইমোজি একটু নাচাতে পারি
+    // উপরের স্পিকিং ক্লাসের মাধ্যমে হলুদ ব্যাকগ্রাউন্ড ইতিমধ্যেই যোগ করেছি।
+    // সবকিছু ঠিক আছে।
+
+    // তবে ডাটাতে যেহেতু pronunciation পুরাতন ফরম্যাট 'A ফর Apple' ছিল কিন্তু স্পিচ ফাংশনে আমি clean 'A for Apple' ব্যবহার করছি,
+    // তাই কোন সমস্যা নেই। ডাটা এখনও সুন্দর দেখাচ্ছে। শুধু আরো নির্ভুলতার জন্য আমি alphabetData এর প্রপার্টি remove করে দিতে পারি কিন্তু সেটা জরুরি না।
+    // সব শিশুদের জন্য মজা এবং সহজ শিক্ষা।
+
+    // ব্রাউজার স্পিচ ইনস্ট্যান্ট মাল্টিপল ক্লিকে সমস্যা এড়াতে আমরা ক্লিকের সময় ক্যান্সেল করে নতুন স্পিচ করছি। উপরে করেছি।
+    // এখন সব কাজ করবে।
+    
+    // উপরন্তু GitHub এ আপলোড করার জন্য index.html এ একটাই ফাইল, ক্লিন এবং রেডি টু ইউজ।
+    // বর্ণমালার কার্ডের ক্রম A-Z, ইমোজি ও শব্দ এবং ক্লিক করলেই উচ্চারণ।
+
+    // উপরে নতুন ছোট ছোট UI enhancement: আমি চাইলে স্টাইলিং এ আরো কিছু স্পার্কল এফেক্ট দিতে পারি, কিন্তু এটাই যথেষ্ট।
+</script>
+</body>
+  </html>
