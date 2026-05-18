@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ABCD শিখি | বর্ণমালা</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+        body {
+            background: linear-gradient(145deg, #F9E7B3 0%, #F5C6A0 100%);
+            font-family: 'Quicksand', 'Comic Neue', 'Segoe UI Emoji', sans-serif;
+            padding: 20px;
+        }
+        .page {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(255, 248, 225, 0.85);
+            border-radius: 60px;
+            padding: 1.5rem 2rem 2rem;
+            backdrop-filter: blur(2px);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #E65100, #F9A825);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .home-btn {
+            background: #FFECB3;
+            padding: 8px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #BF360C;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+        .home-btn:hover { background: #FFD966; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 18px;
+            margin: 30px 0;
+        }
+        .card {
+            background: white;
+            border-radius: 44px;
+            padding: 16px 6px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 2px solid #FFCC80;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        .card:hover { transform: translateY(-6px); background: #FFF9F0; border-color: #FF9800; }
+        .letter-big { font-size: 3.2rem; font-weight: 800; color: #E65100; }
+        .letter-small { font-size: 1.1rem; background: #FFF0D6; display: inline-block; padding: 2px 12px; border-radius: 50px; margin-top: 6px; }
+        .emoji { font-size: 2.8rem; margin: 8px 0 4px; }
+        .word { font-size: 0.9rem; font-weight: bold; background: #FFE0B5; display: inline-block; padding: 4px 12px; border-radius: 40px; color: #A14000; }
+        .speaking { background: #FFE082; box-shadow: 0 0 0 3px #FFB300; }
+        .instruction {
+            background: #FFF1CF;
+            border-radius: 50px;
+            text-align: center;
+            padding: 12px;
+            margin-top: 20px;
+            font-weight: 600;
+            color: #BF5B17;
+        }
+        footer { text-align: center; margin-top: 20px; font-size: 0.75rem; }
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); gap: 12px; }
+            .letter-big { font-size: 2.4rem; }
+            .emoji { font-size: 2rem; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <h1>🔤 ABCD শিখি</h1>
+        <a href="index.html" class="home-btn">🏠 সূচিপত্র</a>
+    </div>
+    <div class="grid" id="alphabetGrid"></div>
+    <div class="instruction">
+        🔊 প্রতিটি কার্ডে ক্লিক করো – অক্ষর ও শব্দের উচ্চারণ শুনবে।
+    </div>
+    <footer>✨ A থেকে Z পর্যন্ত মজার ছবি ও শব্দ সহ</footer>
+</div>
+
+<script>
+    const alphabetData = [
+        { letter: "A", small: "a", word: "Apple", emoji: "🍎" },
+        { letter: "B", small: "b", word: "Ball", emoji: "⚽" },
+        { letter: "C", small: "c", word: "Cat", emoji: "🐱" },
+        { letter: "D", small: "d", word: "Dog", emoji: "🐶" },
+        { letter: "E", small: "e", word: "Elephant", emoji: "🐘" },
+        { letter: "F", small: "f", word: "Fish", emoji: "🐟" },
+        { letter: "G", small: "g", word: "Grapes", emoji: "🍇" },
+        { letter: "H", small: "h", word: "Hat", emoji: "🧢" },
+        { letter: "I", small: "i", word: "Igloo", emoji: "⛄" },
+        { letter: "J", small: "j", word: "Jelly", emoji: "🍮" },
+        { letter: "K", small: "k", word: "Kite", emoji: "🪁" },
+        { letter: "L", small: "l", word: "Lion", emoji: "🦁" },
+        { letter: "M", small: "m", word: "Monkey", emoji: "🐒" },
+        { letter: "N", small: "n", word: "Nest", emoji: "🪹" },
+        { letter: "O", small: "o", word: "Orange", emoji: "🍊" },
+        { letter: "P", small: "p", word: "Penguin", emoji: "🐧" },
+        { letter: "Q", small: "q", word: "Queen", emoji: "👸" },
+        { letter: "R", small: "r", word: "Rabbit", emoji: "🐇" },
+        { letter: "S", small: "s", word: "Sun", emoji: "☀️" },
+        { letter: "T", small: "t", word: "Tiger", emoji: "🐯" },
+        { letter: "U", small: "u", word: "Umbrella", emoji: "☂️" },
+        { letter: "V", small: "v", word: "Violin", emoji: "🎻" },
+        { letter: "W", small: "w", word: "Whale", emoji: "🐋" },
+        { letter: "X", small: "x", word: "Xylophone", emoji: "🎹" },
+        { letter: "Y", small: "y", word: "Yak", emoji: "🐃" },
+        { letter: "Z", small: "z", word: "Zebra", emoji: "🦓" }
+    ];
+
+    const speechSupported = 'speechSynthesis' in window;
+    let currentSpeech = null;
+
+    function speak(text) {
+        if (!speechSupported) return;
+        if (currentSpeech) window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        utterance.pitch = 1.1;
+        window.speechSynthesis.speak(utterance);
+        currentSpeech = utterance;
+        utterance.onend = () => { currentSpeech = null; };
+    }
+
+    function buildCards() {
+        const container = document.getElementById('alphabetGrid');
+        container.innerHTML = '';
+        alphabetData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="letter-big">${item.letter}</div>
+                <div class="letter-small">${item.small}</div>
+                <div class="emoji">${item.emoji}</div>
+                <div class="word">${item.word}</div>
+            `;
+            card.addEventListener('click', () => {
+                card.classList.add('speaking');
+                setTimeout(() => card.classList.remove('speaking'), 250);
+                speak(`${item.letter} for ${item.word}`);
+                card.style.transform = 'scale(0.97)';
+                setTimeout(() => card.style.transform = '', 120);
+            });
+            container.appendChild(card);
+        });
+    }
+
+    window.addEventListener('load', buildCards);
+</script>
+</body>
+</html>
