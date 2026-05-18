@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>১২৩৪ শিখি | সংখ্যা ১-১০০</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+        body {
+            background: linear-gradient(145deg, #F9E7B3 0%, #F5C6A0 100%);
+            font-family: 'Quicksand', 'Comic Neue', 'Segoe UI Emoji', sans-serif;
+            padding: 20px;
+        }
+        .page {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 248, 225, 0.85);
+            border-radius: 60px;
+            padding: 1.5rem 2rem 2rem;
+            backdrop-filter: blur(2px);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #2E7D32, #F9A825);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .home-btn {
+            background: #FFECB3;
+            padding: 8px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #BF360C;
+            font-weight: bold;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+            gap: 16px;
+            margin: 30px 0;
+        }
+        .card {
+            background: white;
+            border-radius: 36px;
+            padding: 14px 5px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 2px solid #A5D6A7;
+        }
+        .card:hover { transform: translateY(-5px); background: #F1F8E9; border-color: #4CAF50; }
+        .digit { font-size: 2rem; font-weight: 800; color: #2E7D32; }
+        .word-name { font-size: 0.8rem; font-weight: bold; background: #E8F5E9; display: inline-block; padding: 3px 8px; border-radius: 30px; margin-top: 5px; color: #1B5E20; }
+        .emoji { font-size: 2rem; margin: 5px 0; }
+        .speaking { background: #FFF59D; box-shadow: 0 0 0 3px #FBC02D; }
+        .instruction {
+            background: #FFF1CF;
+            border-radius: 50px;
+            text-align: center;
+            padding: 12px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        footer { text-align: center; margin-top: 20px; font-size: 0.75rem; }
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); gap: 10px; }
+            .digit { font-size: 1.6rem; }
+            .emoji { font-size: 1.6rem; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <h1>🔢 ১২৩৪ শিখি (১-১০০)</h1>
+        <a href="index.html" class="home-btn">🏠 সূচিপত্র</a>
+    </div>
+    <div class="grid" id="numberGrid"></div>
+    <div class="instruction">
+        🔊 প্রতিটি সংখ্যার কার্ডে ক্লিক করো – ইংরেজি নাম শুনবে (যেমন: fifty-five)।
+    </div>
+    <footer>✨ ১ থেকে ১০০ পর্যন্ত সব সংখ্যা, ছবি ও স্পিচ সহ</footer>
+</div>
+
+<script>
+    // সংখ্যাকে ইংরেজি শব্দে রূপান্তর (১-১০০)
+    function numberToWords(num) {
+        if (num === 0) return "zero";
+        const ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+        const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+        if (num < 20) return ones[num];
+        if (num < 100) {
+            let remainder = num % 10;
+            let base = tens[Math.floor(num / 10)];
+            return remainder === 0 ? base : base + "-" + ones[remainder];
+        }
+        return "one hundred";
+    }
+
+    // ইমোজি লাইব্রেরি (বাচ্চাদের জন্য মজাদার)
+    const emojiPool = ["🍎", "🐶", "🐱", "🐭", "🐰", "🦊", "🐻", "🐼", "🐨", "🐸", "🐒", "🐔", "🐧", "🐦", "🐴", "🐝", "🐟", "🐠", "🐙", "🦋", "⭐", "🌈", "🍕", "🚀", "⚽", "🎈", "📚", "🎵", "🧸", "❤️"];
+    function getEmoji(n) { return emojiPool[n % emojiPool.length]; }
+
+    const numbers = [];
+    for (let i = 1; i <= 100; i++) {
+        numbers.push({
+            digit: i,
+            word: numberToWords(i),
+            emoji: getEmoji(i)
+        });
+    }
+
+    const speechSupported = 'speechSynthesis' in window;
+    let currentSpeech = null;
+
+    function speak(text) {
+        if (!speechSupported) return;
+        if (currentSpeech) window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        utterance.pitch = 1.1;
+        window.speechSynthesis.speak(utterance);
+        currentSpeech = utterance;
+        utterance.onend = () => { currentSpeech = null; };
+    }
+
+    function buildNumberCards() {
+        const container = document.getElementById('numberGrid');
+        container.innerHTML = '';
+        numbers.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="digit">${item.digit}</div>
+                <div class="word-name">${item.word}</div>
+                <div class="emoji">${item.emoji}</div>
+            `;
+            card.addEventListener('click', () => {
+                card.classList.add('speaking');
+                setTimeout(() => card.classList.remove('speaking'), 250);
+                speak(item.word);
+                card.style.transform = 'scale(0.97)';
+                setTimeout(() => card.style.transform = '', 120);
+            });
+            container.appendChild(card);
+        });
+    }
+
+    window.addEventListener('load', buildNumberCards);
+</script>
+</body>
+</html>
