@@ -3,115 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>শিখি বর্ণমালা ও সংখ্যা ১-১০০ | শিশুদের মজার শিক্ষা</title>
-    <meta name="description" content="শিশুদের জন্য ইন্টারঅ্যাকটিভ বর্ণমালা ও ১ থেকে ১০০ সংখ্যা শেখার ওয়েবসাইট। ছবি, ইংরেজি নাম ও ক্লিক করে উচ্চারণ শুনুন।">
-    <meta name="theme-color" content="#FFB74D">
+    <title>শিশু শিক্ষা | সূচিপত্র</title>
+    <meta name="description" content="শিশুদের জন্য বর্ণমালা ও সংখ্যা শেখার ওয়েবসাইট। সূচিপত্র থেকে বেছে নিন।">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none;
         }
-
         body {
             background: linear-gradient(145deg, #F9E7B3 0%, #F5C6A0 100%);
             font-family: 'Quicksand', 'Comic Neue', 'Segoe UI Emoji', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
-
-        .learning-world {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: rgba(255, 248, 225, 0.85);
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 248, 225, 0.9);
             border-radius: 72px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), 0 0 0 10px rgba(255, 215, 150, 0.5);
-            padding: 1.5rem 2rem 2.5rem;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            padding: 2rem 1.5rem;
+            text-align: center;
             backdrop-filter: blur(2px);
         }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 1.2rem;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            background: linear-gradient(135deg, #E65100, #F9A825, #FFD54F);
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #E65100, #F9A825);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            text-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 0.5rem;
         }
-
-        .hero .sub {
+        .sub {
             font-size: 1.3rem;
-            font-weight: 600;
             background: #FFECB3;
             display: inline-block;
-            padding: 8px 24px;
+            padding: 6px 20px;
             border-radius: 60px;
             color: #BF360C;
+            margin-bottom: 2rem;
         }
-
-        .fun-line {
-            font-size: 1.1rem;
-            margin-top: 15px;
-            color: #D84315;
-            font-weight: 600;
-            background: #FFF3E0;
-            width: fit-content;
-            margin: 15px auto 0;
-            padding: 6px 20px;
-            border-radius: 50px;
-        }
-
-        .section-title {
-            font-size: 1.9rem;
-            font-weight: 700;
-            margin: 30px 0 15px 0;
-            padding-left: 12px;
-            border-left: 12px solid #FF8A65;
-            color: #BF5B17;
+        .card-menu {
             display: flex;
-            align-items: center;
-            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 2rem 0;
         }
-        .section-title span {
-            background: #FFE0B5;
-            padding: 5px 18px;
-            border-radius: 50px;
-            font-size: 1rem;
-        }
-
-        .abc-grid, .number-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 16px;
-            margin: 1rem 0;
-        }
-
-        .learning-card {
+        .menu-item {
             background: white;
-            border-radius: 40px;
-            padding: 14px 6px 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 10px 15px -8px rgba(0, 0, 0, 0.1);
+            border-radius: 60px;
+            padding: 30px 25px;
+            width: 240px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
             border: 2px solid #FFCC80;
         }
-
-        .learning-card:hover {
-            transform: translateY(-5px);
-            border-color: #FF9800;
+        .menu-item:hover {
+            transform: translateY(-10px);
             background: #FFF9F0;
+            border-color: #FF9800;
         }
-
-        .main-digit {
-            font-size: 3rem;
+        .menu-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .menu-title {
+            font-size: 2rem;
             font-weight: 800;
+            color: #E65100;
+        }
+        .menu-desc {
+            font-size: 1rem;
+            color: #A5673F;
+            margin-top: 8px;
+        }
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #BF5B17;
+        }
+        @media (max-width: 550px) {
+            .menu-item { width: 180px; padding: 20px 15px; }
+            .menu-title { font-size: 1.6rem; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎈 শিখির হাট 🎈</h1>
+    <div class="sub">বেছে নাও তোমার পাঠ</div>
+    <div class="card-menu">
+        <a href="alphabet.html" class="menu-item">
+            <span class="menu-icon">🔤</span>
+            <div class="menu-title">ABCD</div>
+            <div class="menu-desc">ইংরেজি বর্ণমালা<br>A থেকে Z</div>
+        </a>
+        <a href="numbers.html" class="menu-item">
+            <span class="menu-icon">🔢</span>
+            <div class="menu-title">১২৩৪</div>
+            <div class="menu-desc">সংখ্যা গণি<br>১ থেকে ১০০</div>
+        </a>
+    </div>
+    <div class="footer">
+        🌟 ক্লিক করে পৃষ্ঠা বেছে নাও। কার্ডে ট্যাপ করলেই শোনা যাবে উচ্চারণ।
+    </div>
+</div>
+</body>
+</html>            font-weight: 800;
             color: #E65100;
             line-height: 1;
             text-shadow: 2px 2px 0 #FFD966;
